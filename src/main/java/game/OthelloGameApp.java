@@ -38,10 +38,45 @@ public class OthelloGameApp extends Application {
     private static Integer param;
     private static Integer size;
     private static String file;
-
+    private static boolean ok = true;
 
     @Override
     public void start(Stage primaryStage) {
+        boolean notDef = false;
+        if (!ok) {
+            try {
+                this.stop();
+            } catch (Exception e){
+                System.out.println("Could not stop App");
+            }
+        }
+        if (size == null && file == null){
+            System.out.println("Must either specify a board size or load a board");
+            notDef = true;
+        }
+        if (size != null && file != null){
+            System.out.println("Size and loading cannot be performed simultanously");
+            notDef = true;
+        }
+        if (mode == null){
+            System.out.println("Mode should be specified");
+            notDef = true;
+        }
+        if (param == null){
+            System.out.println("Must specify param");
+            notDef = true;
+        }
+        if (ai == null){
+            System.out.println("Must specify ia");
+            notDef = true;
+        }
+        if (notDef){
+            try {
+                this.stop();
+            } catch (Exception e){
+                System.out.println("Could not stop App");
+            }
+        }
         primaryStage.setTitle(appTitle);
         primaryStage.getIcons().add(new Image(appIcon));
         createGame(primaryStage, size);
@@ -187,7 +222,6 @@ public class OthelloGameApp extends Application {
 
     public static void main(String[] args){
         int i;
-        boolean ok = true;
         for (i = 0; i < args.length && ok; i++){
             switch(args[i]){
                 case "-ai":
