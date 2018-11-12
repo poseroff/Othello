@@ -6,6 +6,7 @@ import front.OthelloGameBoardView;
 import front.PlayerView;
 import front.ScoreBoard;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.Scene;
@@ -44,11 +45,8 @@ public class OthelloGameApp extends Application {
     public void start(Stage primaryStage) {
         boolean notDef = false;
         if (!ok) {
-            try {
-                primaryStage.close();
-            } catch (Exception e){
-                System.out.println("Could not stop App");
-            }
+            System.exit(1);
+            return;
         }
         if (size == null && file == null){
             System.out.println("Must either specify a board size or load a board");
@@ -71,11 +69,8 @@ public class OthelloGameApp extends Application {
             notDef = true;
         }
         if (notDef){
-            try {
-                primaryStage.close();
-            } catch (Exception e){
-                System.out.println("Could not stop App");
-            }
+            System.exit(1);
+            return;
         }
         primaryStage.setTitle(appTitle);
         primaryStage.getIcons().add(new Image(appIcon));
@@ -324,26 +319,6 @@ public class OthelloGameApp extends Application {
             }
         }
         if (ok) {
-            if (size == null && file == null){
-                System.out.println("Must either specify a board size or load a board");
-                return;
-            }
-            if (size != null && file != null){
-                System.out.println("Size and loading cannot be performed simultanously");
-                return;
-            }
-            if (mode == null){
-                System.out.println("Mode should be specified");
-                return;
-            }
-            if (param == null){
-                System.out.println("Must specify param");
-                return;
-            }
-            if (ai == null){
-                System.out.println("Must specify ia");
-                return;
-            }
             launch(args);
         }
     }
