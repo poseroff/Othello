@@ -10,6 +10,10 @@ public enum Prune {
         this.keyword = keyword;
     }
 
+    public String getKeyword() {
+        return keyword;
+    }
+
     static Prune getPrune(String keyword){
         for (Prune prune : Prune.values()){
             if (prune.keyword.equals(keyword)){

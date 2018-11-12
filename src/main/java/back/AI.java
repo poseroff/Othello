@@ -4,22 +4,33 @@ import java.util.List;
 
 public class AI
 {
-	private int max_param;
+	private int max_depth;
 	private boolean depth_mode;
 	private boolean pruning;
 	private Board bestBoard;
 	private DotBuilder tree;
+	private int max_time;
+
 	
-	public AI(int mode, int param, boolean pruning)
+	public AI(String mode, int param, boolean pruning)
 	{
-		this.depth_mode = (mode==1);
-		this.max_param = param;
+		if(mode.equals("depth"))
+			depth_mode = true;
+		else
+			depth_mode = false;
+		if(depth_mode) {
+			max_depth = param;
+			max_time= -1000;
+		}
+		else {
+			this.max_depth = 10;
+			this.max_time = param;
+		}
 		this.pruning = pruning;
 		this.tree = new DotBuilder();
 	}
 	
-	// pasar lo del DOT a una clase DotBuilder
-	private int depthMinimax(Board board, int depth, boolean maximizing_player, int alpha, int beta)
+	private int minimax(long end, Board board, int depth, boolean maximizing_player, int alpha, int beta)
 	{
 		if(board.boardIsFull())
 		{
@@ -62,13 +73,13 @@ public class AI
 						return Integer.MIN_VALUE;
 					}
 				}
-				else if(depth < max_param)
+				else if(depth < max_depth)
 				{
 					// if WHITE can still move
 					tree.addPlayerSkipped(board, "BLACK");
 					Board b = board.cloneBoard();
 					b.updateValidSpaces(ConstantValues.WHITE);
-					int score = depthMinimax(b, depth+1, false, alpha, beta);
+					int score = minimax(end, b, depth+1, false, alpha, beta);
 					tree.addConnection(board, b, score);
 					tree.highlightNode(b);
 					return score;
@@ -90,26 +101,26 @@ public class AI
 						return Integer.MIN_VALUE;
 					}
 				}
-				else if(depth < max_param)
+				else if(depth < max_depth)
 				{
 					// if BLACK can still move
 					tree.addPlayerSkipped(board, "WHITE");
 					Board b = board.cloneBoard();
 					b.updateValidSpaces(ConstantValues.BLACK);
-					int score = depthMinimax(b, depth+1, true, alpha, beta);
+					int score = minimax(end, b, depth+1, true, alpha, beta);
 					tree.addConnection(board, b, score);
 					tree.highlightNode(b);
 					return score;
 				}
 			}
 		}
-		if(depth == max_param)
+		if(depth == max_depth)
 		{
 			if(maximizing_player)
 				tree.addDeclaration(board, "BLACK");
 			else
 				tree.addDeclaration(board, "WHITE");
-			return board.getScoreDifference();
+			return board.getHeuristicScore();
 		}
 		// if I'm black and can move
 		if(maximizing_player)
@@ -122,6 +133,9 @@ public class AI
 			
 			for(Board b: moves_list)
 			{	
+				if(!depth_mode && System.currentTimeMillis() > end) {
+					break;
+				}
 				if(prune_flag)
 				{
 					tree.addPrunedDeclaration(b, "WHITE");
@@ -129,7 +143,7 @@ public class AI
 				}
 				else
 				{
-					int score = depthMinimax(b, depth+1, false, alpha, beta);
+					int score = minimax(end, b, depth+1, false, alpha, beta);
 					tree.addConnection(board, b, score);
 					// alpha is the new max, top is the index of the best board so far
 					if(score > max_eval)
@@ -161,9 +175,11 @@ public class AI
 			int min_eval = Integer.MAX_VALUE;
 			boolean prune_flag = false;
 			tree.addDeclaration(board, "WHITE");
-			
 			for(Board b: moves_list)
-			{
+			{	
+				if(!depth_mode && System.currentTimeMillis() > end) {
+					break;
+				}
 				if(prune_flag)
 				{
 					tree.addPrunedDeclaration(b, "WHITE");
@@ -171,7 +187,7 @@ public class AI
 				}
 				else
 				{
-					int score = depthMinimax(b, depth+1, true, alpha, beta);
+					int score = minimax(end, b, depth+1, true, alpha, beta);
 					tree.addConnection(board, b, score);
 					// beta is the new min, board is not saved since this is just an intermediate step
 					if(score < min_eval)
@@ -202,8 +218,9 @@ public class AI
 	public void makeAMove(Board board, int player)
 	{
 		tree.open();
-		if(depth_mode)
-			System.out.println("Realiza movimiento de puntaje " +depthMinimax(board, 0, (player==ConstantValues.BLACK), Integer.MIN_VALUE, Integer.MAX_VALUE));
+		long start = System.currentTimeMillis();
+		long end = start + max_time*1000;
+		System.out.println("Realiza movimiento de puntaje " +minimax(end, board, 0, (player==ConstantValues.BLACK), Integer.MIN_VALUE, Integer.MAX_VALUE));
 		board.setState(bestBoard);
 		tree.close();
 	}

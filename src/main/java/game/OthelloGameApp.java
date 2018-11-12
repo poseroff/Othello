@@ -74,12 +74,12 @@ public class OthelloGameApp extends Application {
         }
         primaryStage.setTitle(appTitle);
         primaryStage.getIcons().add(new Image(appIcon));
-        createGame(primaryStage, size);
+        createGame(primaryStage);
         primaryStage.show();
     }
 
-    public void createGame(Stage primaryStage, int size){
-        game = new Game(size);
+    public void createGame(Stage primaryStage){
+        game = new Game(size, ai.getCode(), mode.getKeyword(), param, prune.getKeyword());
         othelloGameBoardView = new OthelloGameBoardView(size, this);
         player1 = new PlayerView("BLACK", Color.BLACK);
         player2 = new PlayerView("WHITE", Color.WHITE);
@@ -106,11 +106,17 @@ public class OthelloGameApp extends Application {
 
     }
 
+    private String getPlayerName(){
+        return game.getCurrentPlayer() == ConstantValues.BLACK ? player1.getName() : player2.getName();
+    }
+
     public void export(){
         game.exportLastTree("tree");
     }
+
     public void placeChip(int i, int j){
-        game.placeChip(i, j);
+        boolean result=game.placeChip(i, j);
+        result=game.nextTurn(); //AGREGADO VER SI SACARLO
         switch (game.getCurrentPlayer()){
             case ConstantValues.BLACK:
                 turn.setValue(player1.getName());
@@ -129,6 +135,9 @@ public class OthelloGameApp extends Application {
                 scoreBoard.finish(player2);
             }
         }
+        System.out.println(result);
+        if(!result)  //AGREGADO VER SI SACARLO
+            game.nextTurn(); //AGREGADO VER SI SACARLO
     }
 
     public PlayerView getCurrentPlayer(){

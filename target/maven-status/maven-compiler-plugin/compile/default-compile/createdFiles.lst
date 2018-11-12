@@ -7,7 +7,6 @@ back\Board$1.class
 front\GenericGameBoardView.class
 back\Tester.class
 front\GameBoardView.class
-back\Game$GameStatus.class
 back\Board.class
 back\AI.class
 game\AI.class

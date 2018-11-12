@@ -11,6 +11,10 @@ public enum AI {
         this.code = code;
     }
 
+    public int getCode() {
+        return code;
+    }
+
     static AI getIA(int code){
         for (AI ai : AI.values()){
             if (ai.code == code){

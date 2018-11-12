@@ -21,11 +21,10 @@ public class Board implements Serializable
 	private boolean black_player_stuck;
 	private int current_player;
 	private List<Coordinates> usable_squares = new ArrayList<>();
-
-
-	public Board(int N, int first_player)
+	
+	public Board(int N, int first_player) throws RuntimeException
 	{
-		if(N<4 || N%2!=0)
+		if(N<4 || N%2!=0 || N>10)
 			throw new RuntimeException();
 		this.size = N;
 		board = new int[N][N];
@@ -137,6 +136,17 @@ public class Board implements Serializable
 	public int getScoreDifference()
 	{
 		return black_score - white_score;
+	}
+	
+	public int getHeuristicScore() {
+		int score=0;
+		for(int i=0; i<size; i++)
+		{
+			for(int j=0; j< size; j++) {
+				score= score + board[i][j]*getHeuristicValue(i,j);
+			}
+		}
+		return score*5 + 2*getScoreDifference() + 3*(usable_squares.size());
 	}
 	
 	public List<Board> getPossibleFollowups(int player)
@@ -437,6 +447,14 @@ public class Board implements Serializable
 			if(isValidMove(row, column, d, player))
 				flipEnemiesInRow(row, column, d, player);
 		}
+	}
+	
+	private int getHeuristicValue(int row, int column)
+	{	
+		if(row==0 && column==0 || row==0 && column==size-1 || row==size-1 && column==0 || row==size-1 && column==size-1)
+			return 5;
+		else 
+			return 1;
 	}
 	
 	private void flipEnemiesInRow(int x, int y, Direction direction, int player)
