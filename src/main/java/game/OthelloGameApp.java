@@ -45,7 +45,7 @@ public class OthelloGameApp extends Application {
         boolean notDef = false;
         if (!ok) {
             try {
-                this.stop();
+                primaryStage.close();
             } catch (Exception e){
                 System.out.println("Could not stop App");
             }
@@ -72,7 +72,7 @@ public class OthelloGameApp extends Application {
         }
         if (notDef){
             try {
-                this.stop();
+                primaryStage.close();
             } catch (Exception e){
                 System.out.println("Could not stop App");
             }
