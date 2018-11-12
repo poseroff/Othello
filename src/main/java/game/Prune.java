@@ -1,0 +1,21 @@
+package game;
+
+public enum Prune {
+    ON("on"),
+    OFF("off");
+
+    private String keyword;
+
+    Prune(String keyword){
+        this.keyword = keyword;
+    }
+
+    static Prune getPrune(String keyword){
+        for (Prune prune : Prune.values()){
+            if (prune.keyword == keyword){
+                return prune;
+            }
+        }
+        throw new RuntimeException();
+    }
+}
