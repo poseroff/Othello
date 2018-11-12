@@ -44,7 +44,14 @@ public class OthelloGameApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         boolean notDef = false;
-        if (!ok) {
+
+        ai = AI.getIA(1);
+        size = 4;
+        prune = Prune.OFF;
+        mode = Mode.DEPTH;
+        param = 5;
+
+        /*if (!ok) {
             System.exit(1);
             return;
         }
@@ -71,9 +78,9 @@ public class OthelloGameApp extends Application {
         if (notDef){
             System.exit(1);
             return;
-        }
+        }*/
         primaryStage.setTitle(appTitle);
-        primaryStage.getIcons().add(new Image(appIcon));
+        //primaryStage.getIcons().add(new Image(appIcon));
         createGame(primaryStage);
         primaryStage.show();
     }
@@ -115,7 +122,8 @@ public class OthelloGameApp extends Application {
     }
 
     public void placeChip(int i, int j){
-        boolean result=game.placeChip(i, j);
+        boolean result;
+        game.placeChip(i, j);
         result=game.nextTurn(); //AGREGADO VER SI SACARLO
         switch (game.getCurrentPlayer()){
             case ConstantValues.BLACK:
