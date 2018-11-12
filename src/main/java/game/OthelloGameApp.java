@@ -35,8 +35,8 @@ public class OthelloGameApp extends Application {
     private static AI ai;
     private static Mode mode;
     private static Prune prune;
-    private static int param;
-    private static int size;
+    private static Integer param;
+    private static Integer size;
     private static String file;
 
 
@@ -44,7 +44,7 @@ public class OthelloGameApp extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle(appTitle);
         primaryStage.getIcons().add(new Image(appIcon));
-        primaryStage.setScene(new Scene(selectBoard(primaryStage)));
+        createGame(primaryStage, size);
         primaryStage.show();
     }
 
@@ -139,7 +139,7 @@ public class OthelloGameApp extends Application {
         }
     }
 
-    public Pane selectBoard(Stage primaryStage){
+    /*public Pane selectBoard(Stage primaryStage){
         VBox vBox = new VBox();
         Button four = new Button();
         four.setText("4x4");
@@ -183,7 +183,7 @@ public class OthelloGameApp extends Application {
         vBox.setMaxHeight(300);
         vBox.getChildren().addAll(four, six, eight, ten);
         return vBox;
-    }
+    }*/
 
     public static void main(String[] args){
         int i;
@@ -205,9 +205,20 @@ public class OthelloGameApp extends Application {
                     }
                     break;
                 case "-mode":
-                    System.out.println("AI Mode: " +args[i+1] +"=" +args[i+3]);
-                    i+=3;
+                    i++;
+                    if (i >= args.length || args[i].charAt(0) == '-'){
+                        System.out.println("Wrong Mode argument");
+                        ok = false;
+                    } else {
+                        try {
+                            mode = Mode.getMode(args[i]);
+                        }catch (Exception e){
+                            System.out.println("Wrong Mode argument");
+                            ok = false;
+                        }
+                    }
                     break;
+
                 case "-prune":
                     i++;
                     if (i >= args.length || args[i].charAt(0) == '-'){
@@ -246,6 +257,22 @@ public class OthelloGameApp extends Application {
                         }
                     }
                     break;
+                case "-param":
+                    i++;
+                    if (i >= args.length || args[i].charAt(0) == '-'){
+                        System.out.println("Wrong Param argument");
+                    } else {
+                        try {
+                            param = Integer.valueOf(args[i]);
+                            if (param <= 0){
+                                System.out.println("Time must be a positive integer");
+                            }
+                        }catch (Exception e){
+                            System.out.println("Wrong Param argument");
+                            ok = false;
+                        }
+                    }
+                    break;
                 case "-load":
                     i++;
                     if (i >= args.length || args[i].charAt(0) == '-'){
@@ -262,7 +289,29 @@ public class OthelloGameApp extends Application {
                     break;
             }
         }
-        launch(args);
+        if (ok) {
+            if (size == null && file == null){
+                System.out.println("Must either specify a board size or load a board");
+                return;
+            }
+            if (size != null && file != null){
+                System.out.println("Size and loading cannot be performed simultanously");
+                return;
+            }
+            if (mode == null){
+                System.out.println("Mode should be specified");
+                return;
+            }
+            if (param == null){
+                System.out.println("Must specify param");
+                return;
+            }
+            if (ai == null){
+                System.out.println("Must specify ia");
+                return;
+            }
+            launch(args);
+        }
     }
 }
 

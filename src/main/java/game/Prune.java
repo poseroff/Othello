@@ -12,7 +12,7 @@ public enum Prune {
 
     static Prune getPrune(String keyword){
         for (Prune prune : Prune.values()){
-            if (prune.keyword == keyword){
+            if (prune.keyword.equals(keyword)){
                 return prune;
             }
         }
