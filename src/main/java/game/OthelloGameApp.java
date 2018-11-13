@@ -44,8 +44,8 @@ public class OthelloGameApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         boolean notDef = false;
-
-        /*ai = AI.getIA(1);
+        /*
+        ai = AI.getIA(1);
         size = 4;
         prune = Prune.OFF;
         mode = Mode.TIME;
@@ -72,8 +72,11 @@ public class OthelloGameApp extends Application {
             notDef = true;
         }
         if (ai == null){
-            System.out.println("Must specify ia");
+            System.out.println("Must specify AI");
             notDef = true;
+        }
+        if (prune == null){
+            System.out.println("Must specify Prune");
         }
         if (notDef){
             System.exit(1);
@@ -111,12 +114,12 @@ public class OthelloGameApp extends Application {
         HBox hBox = new HBox();
         scoreBoard = new ScoreBoard(player1, player2, turn, this);
         hBox.getChildren().addAll(othelloGameBoardView, scoreBoard);
-        if (ai.equals(AI.DISABLED) || ai.equals(AI.MOVES_FIRST) && getCurrentPlayer() == player2 || ai.equals(AI.MOVES_LAST) && getCurrentPlayer() == player2){
+        setGameBoard();
+        if (ai.equals(AI.DISABLED) || ai.equals(AI.MOVES_FIRST) && getCurrentPlayer() == player2 || ai.equals(AI.MOVES_LAST) && getCurrentPlayer() == player1){
             scoreBoard.cpu.setDisable(true);
-        } else{
+        } else {
             othelloGameBoardView.disableBoard();
         }
-        setGameBoard();
         primaryStage.setScene(new Scene(hBox));
     }
 
@@ -302,7 +305,7 @@ public class OthelloGameApp extends Application {
                         try {
                             ai = AI.getIA(Integer.valueOf(args[i]));
                         }catch (Exception e){
-                            System.out.println("Wrong IA argument");
+                            System.out.println("Wrong AI argument");
                             ok = false;
                         }
                     }
