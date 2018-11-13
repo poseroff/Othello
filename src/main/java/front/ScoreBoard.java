@@ -16,7 +16,8 @@ public class ScoreBoard extends VBox {
     private HBox plays;
     private OthelloGameApp othelloGameApp;
 
-    public ScoreBoard(PlayerView player1, PlayerView player2, StringProperty turn){
+    public ScoreBoard(PlayerView player1, PlayerView player2, StringProperty turn, OthelloGameApp othelloGameApp){
+        this.othelloGameApp = othelloGameApp;
         this.getChildren().add(new Text("Score"));
         this.setWidth(100);
         playerViews = new PlayerView[2];

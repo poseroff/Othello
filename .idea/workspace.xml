@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="842885f6-e989-4454-8ed1-c543364ef2c7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/front/ScoreBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/ScoreBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/OthelloGameApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/OthelloGameApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/front/ScoreBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/front/ScoreBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/game/OthelloGameApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/game/OthelloGameApp.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -63,13 +67,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="2223" />
+          <entry key="java" value="2262" />
           <entry key="xml" value="78" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2223" />
+          <entry key="JAVA" value="2262" />
           <entry key="XML" value="78" />
         </counts>
       </usages-collector>
@@ -99,11 +103,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/game/OthelloGameApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="140" column="54" selection-start-line="140" selection-start-column="54" selection-end-line="140" selection-end-column="54" />
+            <state relative-caret-position="184">
+              <caret line="95" column="64" selection-start-line="95" selection-start-column="64" selection-end-line="95" selection-end-column="64" />
               <folding>
-                <element signature="e#3006#3007#0" expanded="true" />
-                <element signature="e#3033#3034#0" expanded="true" />
+                <element signature="e#3125#3126#0" expanded="true" />
+                <element signature="e#3152#3153#0" expanded="true" />
                 <element signature="e#3469#3470#0" expanded="true" />
                 <element signature="e#3512#3513#0" expanded="true" />
               </folding>
@@ -114,8 +118,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/front/ScoreBoard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="47" selection-start-line="47" selection-end-line="47" />
+            <state relative-caret-position="-361">
+              <caret line="19" column="45" selection-start-line="19" selection-start-column="45" selection-end-line="19" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -206,6 +210,7 @@
         <option value="$PROJECT_DIR$/src/main/java/game/Mode.java" />
         <option value="$PROJECT_DIR$/src/main/java/game/Prune.java" />
         <option value="$PROJECT_DIR$/src/main/java/back/Game.java" />
+        <option value="$PROJECT_DIR$/src/main/java/front/ScoreBoard.java" />
         <option value="$PROJECT_DIR$/src/main/java/game/OthelloGameApp.java" />
       </list>
     </option>
@@ -429,12 +434,12 @@
       <workItem from="1542002382281" duration="3181000" />
       <workItem from="1542039666751" duration="5231000" />
       <workItem from="1542056280224" duration="4845000" />
-      <workItem from="1542064425151" duration="3693000" />
+      <workItem from="1542064425151" duration="4769000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21583000" />
+    <option name="totallyTimeSpent" value="22659000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1612" height="876" extended-state="0" />
@@ -586,18 +591,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/front/ScoreBoard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="47" selection-start-line="47" selection-end-line="47" />
+        <state relative-caret-position="-361">
+          <caret line="19" column="45" selection-start-line="19" selection-start-column="45" selection-end-line="19" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/game/OthelloGameApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="140" column="54" selection-start-line="140" selection-start-column="54" selection-end-line="140" selection-end-column="54" />
+        <state relative-caret-position="184">
+          <caret line="95" column="64" selection-start-line="95" selection-start-column="64" selection-end-line="95" selection-end-column="64" />
           <folding>
-            <element signature="e#3006#3007#0" expanded="true" />
-            <element signature="e#3033#3034#0" expanded="true" />
+            <element signature="e#3125#3126#0" expanded="true" />
+            <element signature="e#3152#3153#0" expanded="true" />
             <element signature="e#3469#3470#0" expanded="true" />
             <element signature="e#3512#3513#0" expanded="true" />
           </folding>

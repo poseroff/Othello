@@ -93,7 +93,7 @@ public class OthelloGameApp extends Application {
         turn = new SimpleStringProperty();
         turn.set(player2.getName());
         HBox hBox = new HBox();
-        scoreBoard = new ScoreBoard(player1, player2, turn);
+        scoreBoard = new ScoreBoard(player1, player2, turn, this);
         hBox.getChildren().addAll(othelloGameBoardView, scoreBoard);
         setGameBoard();
         primaryStage.setScene(new Scene(hBox));
