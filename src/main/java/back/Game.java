@@ -46,16 +46,11 @@ public class Game
 			{
 				board.endGame();
 				stack.push(board.cloneBoard());
-				System.out.println("GAME OVER! Black: " +board.getBlackScore() +" - White: " +board.getWhiteScore());
 				return false;
 			}
 			else
 			{
 				board.stopCurrentPlayer();
-				if(board.currentPlayer() == ConstantValues.BLACK)
-					System.out.println("Black player is stuck!");
-				else
-					System.out.println("White player is stuck!");
 				return false;
 			}
 		}

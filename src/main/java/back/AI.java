@@ -220,7 +220,7 @@ public class AI
 		tree.open();
 		long start = System.currentTimeMillis();
 		long end = start + max_time*1000;
-		System.out.println("Realiza movimiento de puntaje " +minimax(end, board, 0, (player==ConstantValues.BLACK), Integer.MIN_VALUE, Integer.MAX_VALUE));
+		System.out.println("Realiza movimiento de puntaje " +minimax(end, board, 0, (player==ConstantValues.BLACK), Integer.MIN_VALUE, Integer.MAX_VALUE) + " en " + (System.currentTimeMillis()-start)/1000.0 + " segs ");
 		board.setState(bestBoard);
 		tree.close();
 	}

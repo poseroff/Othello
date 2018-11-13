@@ -44,12 +44,12 @@ public class OthelloGameApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         boolean notDef = false;
-        /*
+
         ai = AI.getIA(1);
         size = 4;
         prune = Prune.OFF;
         mode = Mode.TIME;
-        param = 10;*/
+        param = 10;
 
         if (!ok) {
             System.exit(1);
@@ -118,12 +118,22 @@ public class OthelloGameApp extends Application {
         } else {
             othelloGameBoardView.disableBoard();
         }
+        player1.setScore(game.getBoard().getBlackScore());
+        player2.setScore(game.getBoard().getWhiteScore());
         primaryStage.setScene(new Scene(hBox));
     }
 
     public void undo(){
         game.undo();
         setGameBoard();
+        if (ai.equals(AI.DISABLED) || ai.equals(AI.MOVES_FIRST) && getCurrentPlayer() == player1 || ai.equals(AI.MOVES_LAST) && getCurrentPlayer() == player2){
+            scoreBoard.cpu.setDisable(true);
+        } else {
+            scoreBoard.cpu.setDisable(false);
+            othelloGameBoardView.disableBoard();
+        }
+        player1.setScore(game.getBoard().getBlackScore());
+        player2.setScore(game.getBoard().getWhiteScore());
     }
 
     public void save(){
@@ -169,7 +179,6 @@ public class OthelloGameApp extends Application {
             } else {
                 scoreBoard.finish(player2);
             }
-            System.out.println("Que no pare la fiesta");
         }
     }
 
@@ -188,7 +197,6 @@ public class OthelloGameApp extends Application {
         player1.setScore(game.getBoard().getBlackScore());
         player2.setScore(game.getBoard().getWhiteScore());
         setGameBoard();
-        System.out.println(result);
         if(!result)  //AGREGADO VER SI SACARLO
             game.nextTurn(); //AGREGADO VER SI SACARLO
         if (!ai.equals(AI.DISABLED)){
@@ -201,7 +209,6 @@ public class OthelloGameApp extends Application {
             } else {
                 scoreBoard.finish(player2);
             }
-            System.out.println("Que no pare la fiesta");
         }
 
     }
@@ -243,52 +250,6 @@ public class OthelloGameApp extends Application {
             }
         }
     }
-
-    /*public Pane selectBoard(Stage primaryStage){
-        VBox vBox = new VBox();
-        Button four = new Button();
-        four.setText("4x4");
-        four.setMinWidth(300);
-        four.setMaxWidth(300);
-        four.setMinHeight(75);
-        four.setMaxHeight(75);
-        four.setOnMouseClicked(event -> {
-            createGame(primaryStage, 4);
-        });
-        Button six = new Button();
-        six.setText("6x6");
-        six.setMinWidth(300);
-        six.setMaxWidth(300);
-        six.setMinHeight(75);
-        six.setMaxHeight(75);
-        six.setOnMouseClicked(event -> {
-            createGame(primaryStage, 6);
-        });
-        Button eight = new Button();
-        eight.setText("8x8");
-        eight.setMinWidth(300);
-        eight.setMaxWidth(300);
-        eight.setMinHeight(75);
-        eight.setMaxHeight(75);
-        eight.setOnMouseClicked(event -> {
-            createGame(primaryStage, 8);
-        });
-        Button ten = new Button();
-        ten.setText("10x10");
-        ten.setMinWidth(300);
-        ten.setMaxWidth(300);
-        ten.setMinHeight(75);
-        ten.setMaxHeight(75);
-        ten.setOnMouseClicked(event -> {
-            createGame(primaryStage, 10);
-        });
-        vBox.setMinHeight(300);
-        vBox.setMinWidth(300);
-        vBox.setMaxHeight(300);
-        vBox.setMaxHeight(300);
-        vBox.getChildren().addAll(four, six, eight, ten);
-        return vBox;
-    }*/
 
     public static void main(String[] args){
         int i;

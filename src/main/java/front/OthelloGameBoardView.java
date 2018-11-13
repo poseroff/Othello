@@ -72,7 +72,6 @@ public class OthelloGameBoardView extends GenericGameBoardView {
         private boolean isAvailable = false;
 
         public OthelloBoardTile(int i, int j){
-            System.out.println("Hola " + this.getWidth() /2 + " " + this.getHeight()/2);
             piece = new Circle();
             piece.radiusProperty().bind(Bindings.min(Bindings.divide(this.heightProperty(), 2),Bindings.divide(this.widthProperty(), 2)));
             setAvailable();
