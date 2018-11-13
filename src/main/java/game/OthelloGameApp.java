@@ -169,10 +169,11 @@ public class OthelloGameApp extends Application {
         player1.setScore(game.getBoard().getBlackScore());
         player2.setScore(game.getBoard().getWhiteScore());
         setGameBoard();
-        //System.out.println(result);
-        /*if(!result)  //AGREGADO VER SI SACARLO
-            game.nextTurn(); //AGREGADO VER SI SACARLO*/
-        scoreBoard.cpu.setDisable(true);
+        if (game.currentPlayerCanMove()) {
+            scoreBoard.cpu.setDisable(true);
+        } else {
+            othelloGameBoardView.disableBoard();
+        }
         if (!game.gameIsNotOver()){
             if (game.getBoard().getBlackScore() >= game.getBoard().getWhiteScore()){
                 scoreBoard.finish(player1);
@@ -199,7 +200,7 @@ public class OthelloGameApp extends Application {
         setGameBoard();
         if(!result)  //AGREGADO VER SI SACARLO
             game.nextTurn(); //AGREGADO VER SI SACARLO
-        if (!ai.equals(AI.DISABLED)){
+        if (!ai.equals(AI.DISABLED) && game.currentPlayerCanMove()){
             scoreBoard.cpu.setDisable(false);
             othelloGameBoardView.disableBoard();
         }

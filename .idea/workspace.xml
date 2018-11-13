@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="842885f6-e989-4454-8ed1-c543364ef2c7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/back/AI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/back/AI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/back/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/back/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/front/OthelloGameBoardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/OthelloGameBoardView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/OthelloGameApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/OthelloGameApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/back/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/back/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/front/OthelloGameBoardView$OthelloBoardTile.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/front/OthelloGameBoardView$OthelloBoardTile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/game/OthelloGameApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/game/OthelloGameApp.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -106,8 +99,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/game/OthelloGameApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="121" column="58" selection-start-line="121" selection-start-column="58" selection-end-line="121" selection-end-column="58" />
+            <state relative-caret-position="17">
+              <caret line="170" column="23" selection-start-line="170" selection-start-column="23" selection-end-line="170" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -115,7 +108,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="jar://C:/Program Files/Java/jdk1.8.0_192/src.zip!/java/lang/Thread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7123">
+            <state relative-caret-position="149">
               <caret line="462" column="11" selection-start-line="462" selection-start-column="11" selection-end-line="462" selection-end-column="11" />
               <folding>
                 <element signature="e#15704#15705#0" expanded="true" />
@@ -446,12 +439,12 @@
       <workItem from="1542039666751" duration="5231000" />
       <workItem from="1542056280224" duration="4845000" />
       <workItem from="1542064425151" duration="9397000" />
-      <workItem from="1542074678799" duration="1238000" />
+      <workItem from="1542074678799" duration="1735000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28525000" />
+    <option name="totallyTimeSpent" value="29022000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1612" height="876" extended-state="0" />
@@ -466,7 +459,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32974428" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32974428" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -484,7 +477,7 @@
       <window_info anchor="right" id="Database" order="5" />
       <window_info anchor="right" id="Theme Preview" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Maven Projects" order="8" visible="true" weight="0.32796392" />
+      <window_info active="true" anchor="right" id="Maven Projects" order="8" visible="true" weight="0.32796392" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -541,17 +534,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1224">
           <caret line="80" column="33" selection-start-line="80" selection-start-column="33" selection-end-line="80" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_192/src.zip!/java/lang/Thread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7123">
-          <caret line="462" column="11" selection-start-line="462" selection-start-column="11" selection-end-line="462" selection-end-column="11" />
-          <folding>
-            <element signature="e#15704#15705#0" expanded="true" />
-            <element signature="e#15770#15771#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -619,10 +601,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_192/src.zip!/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="462" column="11" selection-start-line="462" selection-start-column="11" selection-end-line="462" selection-end-column="11" />
+          <folding>
+            <element signature="e#15704#15705#0" expanded="true" />
+            <element signature="e#15770#15771#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/game/OthelloGameApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="121" column="58" selection-start-line="121" selection-start-column="58" selection-end-line="121" selection-end-column="58" />
+        <state relative-caret-position="17">
+          <caret line="170" column="23" selection-start-line="170" selection-start-column="23" selection-end-line="170" selection-end-column="23" />
         </state>
       </provider>
     </entry>
