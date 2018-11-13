@@ -136,16 +136,18 @@ public class OthelloGameApp extends Application {
         player1.setScore(game.getBoard().getBlackScore());
         player2.setScore(game.getBoard().getWhiteScore());
         setGameBoard();
+        System.out.println(result);
+        if(!result)  //AGREGADO VER SI SACARLO
+            game.nextTurn(); //AGREGADO VER SI SACARLO
         if (!game.gameIsNotOver()){
             if (game.getBoard().getBlackScore() >= game.getBoard().getWhiteScore()){
                 scoreBoard.finish(player1);
             } else {
                 scoreBoard.finish(player2);
             }
+            System.out.println("Que no pare la fiesta");
         }
-        System.out.println(result);
-        if(!result)  //AGREGADO VER SI SACARLO
-            game.nextTurn(); //AGREGADO VER SI SACARLO
+
     }
 
     public PlayerView getCurrentPlayer(){
