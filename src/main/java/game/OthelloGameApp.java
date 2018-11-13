@@ -93,8 +93,7 @@ public class OthelloGameApp extends Application {
         {
             game = new Game(size, ai.getCode(), mode.getKeyword(), param, prune.getKeyword());
         }
-        else
-        {
+        else {
             game = new Game(4, ai.getCode(), mode.getKeyword(), param, prune.getKeyword());
             try {
                 game.loadGame(file);
@@ -105,7 +104,6 @@ public class OthelloGameApp extends Application {
                 alert.setContentText("No se pudo cargar el archivo");
             }
         }
-        game = new Game(size, ai.getCode(), mode.getKeyword(), param, prune.getKeyword());
         othelloGameBoardView = new OthelloGameBoardView(size, this);
         player1 = new PlayerView("BLACK", Color.BLACK);
         player2 = new PlayerView("WHITE", Color.WHITE);
@@ -115,7 +113,7 @@ public class OthelloGameApp extends Application {
         scoreBoard = new ScoreBoard(player1, player2, turn, this);
         hBox.getChildren().addAll(othelloGameBoardView, scoreBoard);
         setGameBoard();
-        if (ai.equals(AI.DISABLED) || ai.equals(AI.MOVES_FIRST) && getCurrentPlayer() == player2 || ai.equals(AI.MOVES_LAST) && getCurrentPlayer() == player1){
+        if (ai.equals(AI.DISABLED) || ai.equals(AI.MOVES_FIRST) && getCurrentPlayer() == player1 || ai.equals(AI.MOVES_LAST) && getCurrentPlayer() == player2){
             scoreBoard.cpu.setDisable(true);
         } else {
             othelloGameBoardView.disableBoard();
