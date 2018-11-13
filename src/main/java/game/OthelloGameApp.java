@@ -45,11 +45,6 @@ public class OthelloGameApp extends Application {
     public void start(Stage primaryStage) {
         boolean notDef = false;
 
-        ai = AI.getIA(1);
-        size = 4;
-        prune = Prune.OFF;
-        mode = Mode.TIME;
-        param = 10;
 
         if (!ok) {
             System.exit(1);
