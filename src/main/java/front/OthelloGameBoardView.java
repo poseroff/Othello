@@ -38,6 +38,15 @@ public class OthelloGameBoardView extends GenericGameBoardView {
         ((OthelloBoardTile)boardTiles[i][j]).setAvailable();
     }
 
+    public void disableBoard(){
+        for (int i= 0; i < rows; i++){
+            for (int j = 0; j < cols; j++){
+                ((OthelloBoardTile)boardTiles[i][j]).setDisable();
+            }
+        }
+
+    }
+
     public void setUnavailable(int i, int j){
         if (i >= rows || j >= cols){
             throw new IndexOutOfBoundsException();
@@ -81,6 +90,10 @@ public class OthelloGameBoardView extends GenericGameBoardView {
             isAvailable = false;
             piece.setVisible(true);
             piece.setFill(player.getColor());
+        }
+
+        private void setDisable(){
+            isAvailable = false;
         }
 
         private void setAvailable(){

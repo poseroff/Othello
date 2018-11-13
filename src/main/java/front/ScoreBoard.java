@@ -15,6 +15,10 @@ public class ScoreBoard extends VBox {
     private PlayerView[] playerViews;
     private HBox plays;
     private OthelloGameApp othelloGameApp;
+    private Button save;
+    private Button undo;
+    private Button export;
+    public Button cpu;
 
     public ScoreBoard(PlayerView player1, PlayerView player2, StringProperty turn, OthelloGameApp othelloGameApp){
         this.othelloGameApp = othelloGameApp;
@@ -40,22 +44,41 @@ public class ScoreBoard extends VBox {
         plays.getChildren().addAll(new Text("Plays "), text);
         this.getChildren().add(player2ScoreBoard);
         this.getChildren().add(plays);
-        Button undo = new Button();
+        undo = new Button();
         undo.setText("Undo");
         undo.setOnMousePressed(event -> {
             othelloGameApp.undo();
         });
-        Button save = new Button();
+        save = new Button();
         save.setText("Save");
         save.setOnMousePressed(event -> {
             othelloGameApp.save();
         });
-        Button export = new Button();
+        export = new Button();
         export.setText("Export Tree");
         export.setOnMousePressed(event -> {
             othelloGameApp.export();
         });
-        this.getChildren().addAll(undo, save, export);
+        cpu = new Button();
+        cpu.setText("CPU Make Play");
+        cpu.setOnMousePressed(event -> {
+            disableButtons();
+            othelloGameApp.cpuMove();
+            enableButtons();
+        });
+        this.getChildren().addAll(undo, save, export, cpu);
+    }
+
+    public void disableButtons(){
+        undo.setDisable(true);
+        save.setDisable(true);
+        export.setDisable(true);
+    }
+
+    public void enableButtons(){
+        undo.setDisable(false);
+        save.setDisable(false);
+        export.setDisable(false);
     }
 
     public void finish(PlayerView playerView){

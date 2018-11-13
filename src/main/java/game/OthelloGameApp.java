@@ -45,13 +45,13 @@ public class OthelloGameApp extends Application {
     public void start(Stage primaryStage) {
         boolean notDef = false;
 
-        ai = AI.getIA(1);
+        /*ai = AI.getIA(1);
         size = 4;
         prune = Prune.OFF;
-        mode = Mode.DEPTH;
-        param = 5;
+        mode = Mode.TIME;
+        param = 10;*/
 
-        /*if (!ok) {
+        if (!ok) {
             System.exit(1);
             return;
         }
@@ -78,7 +78,7 @@ public class OthelloGameApp extends Application {
         if (notDef){
             System.exit(1);
             return;
-        }*/
+        }
         primaryStage.setTitle(appTitle);
         //primaryStage.getIcons().add(new Image(appIcon));
         createGame(primaryStage);
@@ -86,6 +86,22 @@ public class OthelloGameApp extends Application {
     }
 
     public void createGame(Stage primaryStage){
+        if(file == null)
+        {
+            game = new Game(size, ai.getCode(), mode.getKeyword(), param, prune.getKeyword());
+        }
+        else
+        {
+            game = new Game(4, ai.getCode(), mode.getKeyword(), param, prune.getKeyword());
+            try {
+                game.loadGame(file);
+                size = game.getBoard().getSize();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("No se pudo cargar el archivo");
+            }
+        }
         game = new Game(size, ai.getCode(), mode.getKeyword(), param, prune.getKeyword());
         othelloGameBoardView = new OthelloGameBoardView(size, this);
         player1 = new PlayerView("BLACK", Color.BLACK);
@@ -95,12 +111,18 @@ public class OthelloGameApp extends Application {
         HBox hBox = new HBox();
         scoreBoard = new ScoreBoard(player1, player2, turn, this);
         hBox.getChildren().addAll(othelloGameBoardView, scoreBoard);
+        if (ai.equals(AI.DISABLED) || ai.equals(AI.MOVES_FIRST) && getCurrentPlayer() == player2 || ai.equals(AI.MOVES_LAST) && getCurrentPlayer() == player2){
+            scoreBoard.cpu.setDisable(true);
+        } else{
+            othelloGameBoardView.disableBoard();
+        }
         setGameBoard();
         primaryStage.setScene(new Scene(hBox));
     }
 
     public void undo(){
         game.undo();
+        setGameBoard();
     }
 
     public void save(){
@@ -121,6 +143,35 @@ public class OthelloGameApp extends Application {
         game.exportLastTree("tree");
     }
 
+    public void cpuMove(){
+        boolean result;
+        game.cpuMove();
+        //result=game.nextTurn(); //AGREGADO VER SI SACARLO
+        switch (game.getCurrentPlayer()){
+            case ConstantValues.BLACK:
+                turn.setValue(player1.getName());
+                break;
+            case ConstantValues.WHITE:
+                turn.setValue(player2.getName());
+                break;
+        }
+        player1.setScore(game.getBoard().getBlackScore());
+        player2.setScore(game.getBoard().getWhiteScore());
+        setGameBoard();
+        //System.out.println(result);
+        /*if(!result)  //AGREGADO VER SI SACARLO
+            game.nextTurn(); //AGREGADO VER SI SACARLO*/
+        scoreBoard.cpu.setDisable(true);
+        if (!game.gameIsNotOver()){
+            if (game.getBoard().getBlackScore() >= game.getBoard().getWhiteScore()){
+                scoreBoard.finish(player1);
+            } else {
+                scoreBoard.finish(player2);
+            }
+            System.out.println("Que no pare la fiesta");
+        }
+    }
+
     public void placeChip(int i, int j){
         boolean result;
         game.placeChip(i, j);
@@ -139,6 +190,10 @@ public class OthelloGameApp extends Application {
         System.out.println(result);
         if(!result)  //AGREGADO VER SI SACARLO
             game.nextTurn(); //AGREGADO VER SI SACARLO
+        if (!ai.equals(AI.DISABLED)){
+            scoreBoard.cpu.setDisable(false);
+            othelloGameBoardView.disableBoard();
+        }
         if (!game.gameIsNotOver()){
             if (game.getBoard().getBlackScore() >= game.getBoard().getWhiteScore()){
                 scoreBoard.finish(player1);
